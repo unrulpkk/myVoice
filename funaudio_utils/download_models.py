@@ -16,11 +16,11 @@ base_cosyvoice_model_path = os.path.join(folder_paths.models_dir, "CosyVoice")
 base_sensevoice_model_path = os.path.join(folder_paths.models_dir, "SenseVoice")
 
 def download_cosyvoice_300m(is_25hz=False):
-    model_name = "CosyVoice-300M"
-    model_id = "iic/CosyVoice-300M"
+    model_name = "CosyVoice2-0.5B"
+    model_id = "iic/CosyVoice2-0.5B"
     if is_25hz:
-        model_name = "CosyVoice-300M-25Hz"
-        model_id = "iic/CosyVoice-300M-25Hz"
+        model_name = "CosyVoice2-0.5B"
+        model_id = "iic/CosyVoice2-0.5B"
     model_dir = os.path.join(base_cosyvoice_model_path, model_name)
     snapshot_download(model_id=model_id, local_dir=model_dir)
     return model_name, model_dir
@@ -43,8 +43,8 @@ def download_sensevoice_small():
     return model_name, model_dir
 
 def download_cosyvoice_300m_instruct():
-    model_name = "CosyVoice-300M-Instruct"
-    model_id = "iic/CosyVoice-300M-Instruct"
+    model_name = "CosyVoice2-0.5B"
+    model_id = "iic/CosyVoice2-0.5B"
     model_dir = os.path.join(base_cosyvoice_model_path, model_name)
     snapshot_download(model_id=model_id, local_dir=model_dir)
     return model_name, model_dir

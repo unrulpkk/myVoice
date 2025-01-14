@@ -198,7 +198,7 @@ class CosyVoiceInstructNode:
         _, model_dir = download_cosyvoice_300m_instruct()
         cosyvoice = CosyVoicePlus(model_dir)
         set_all_random_seed(seed)
-        output = cosyvoice.inference_instruct(tts_text, speaker_name, instruct_text, False, speed)
+        output = cosyvoice.inference_instruct2(tts_text, speaker_name, instruct_text, False, speed)
         return return_audio(output,t0,None)
 
 class CosyVoiceLoadSpeakerModelNode:
