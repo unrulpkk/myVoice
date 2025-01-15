@@ -71,7 +71,7 @@ class CosyVoiceZeroShotNode:
 
     def generate(self, tts_text, speed, seed, use_25hz, prompt_text=None, prompt_wav=None, speaker_model=None):
         t0 = ttime()
-        _, model_dir = download_cosyvoice_300m(use_25hz)
+        _, model_dir = download_cosyvoice2_05B(use_25hz)
         cosyvoice = CosyVoicePlus(model_dir)
         if speaker_model is None:
             assert len(prompt_text) > 0, "prompt文本为空，您是否忘记输入prompt文本？"
