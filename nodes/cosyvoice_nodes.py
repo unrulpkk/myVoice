@@ -11,7 +11,7 @@ import folder_paths
 import numpy as np
 import torch
 from funaudio_utils.pre import FunAudioLLMTool
-from funaudio_utils.download_models import download_cosyvoice_300m, download_cosyvoice2_05B, get_speaker_default_path, download_cosyvoice_300m_sft,download_cosyvoice_300m_instruct
+from funaudio_utils.download_models import download_cosyvoice_300m,download_cosyvoice2_05B, get_speaker_default_path, download_cosyvoice_300m_sft,download_cosyvoice_300m_instruct
 from funaudio_utils.cosyvoice_plus import CosyVoicePlus
 from cosyvoice.utils.common import set_all_random_seed
 
