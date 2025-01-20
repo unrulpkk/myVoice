@@ -11,10 +11,10 @@ import folder_paths
 import numpy as np
 import torch
 from funaudio_utils.pre import FunAudioLLMTool
-from funaudio_utils.download_models import download_cosyvoice_300m,download_cosyvoice2_05B, get_speaker_default_path, download_cosyvoice_300m_sft,download_cosyvoice_300m_instruct
+from funaudio_utils.download_models import download_cosyvoice_300m, download_cosyvoice2_05B , get_speaker_default_path, download_cosyvoice_300m_sft,download_cosyvoice_300m_instruct
 from funaudio_utils.cosyvoice_plus import CosyVoicePlus
 from cosyvoice.utils.common import set_all_random_seed
-
+from cosyvoice.cli.cosyvoice import CosyVoice, CosyVoice2
 fAudioTool = FunAudioLLMTool()
 
 CATEGORY_NAME = "FunAudioLLM - CosyVoice"
@@ -72,7 +72,8 @@ class CosyVoiceZeroShotNode:
     def generate(self, tts_text, speed, seed, use_25hz, prompt_text=None, prompt_wav=None, speaker_model=None):
         t0 = ttime()
         _, model_dir = download_cosyvoice2_05B(use_25hz)
-        cosyvoice = CosyVoicePlus(model_dir)
+        # cosyvoice = CosyVoicePlus(model_dir)
+        cosyvoice = CosyVoice2(model_dir)
         if speaker_model is None:
             assert len(prompt_text) > 0, "prompt文本为空，您是否忘记输入prompt文本？"
             speech = fAudioTool.audio_resample(prompt_wav["waveform"], prompt_wav["sample_rate"])
@@ -81,7 +82,7 @@ class CosyVoiceZeroShotNode:
             print(model_dir)
             set_all_random_seed(seed)
             output = cosyvoice.inference_zero_shot(tts_text, prompt_text, prompt_speech_16k,False,speed)
-            spk_model = cosyvoice.frontend.frontend_zero_shot(tts_text, prompt_text, prompt_speech_16k)
+            spk_model = cosyvoice.frontend.frontend_zero_shot(tts_text, prompt_text, prompt_speech_16k,240000)
             del spk_model['text']
             del spk_model['text_len']
             return return_audio(output,t0,spk_model)
